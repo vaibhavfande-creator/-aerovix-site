@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electrical Supply, Distribution &amp; Contracting</title>
+<style>
+  :root{
+    --bg: #0B1220;
+    --panel: #101C33;
+    --panel-2: #0E1830;
+    --grid: #1E2C48;
+    --amber: #F5A623;
+    --copper: #C97C4B;
+    --text: #E7EAF0;
+    --muted: #8A96AC;
+    --line: #24344F;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans', Arial, sans-serif;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  @font-face{
+    font-family:'stack';
+  }
+  /* blueprint grid background */
+  .grid-bg{
+    position:fixed;
+    inset:0;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity:0.35;
+    pointer-events:none;
+    z-index:0;
+  }
+  .wrap{ position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:0 28px;}
+
+  /* NAV */
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 28px;
+    border-bottom:1px solid var(--line);
+    position:relative; z-index:2;
+  }
+  .brand{
+    font-family:'Oswald', 'Arial Narrow', sans-serif;
+    font-weight:600;
+    letter-spacing:0.06em;
+    font-size:20px;
+    text-transform:uppercase;
+    display:flex; align-items:center; gap:10px;
+  }
+  .brand .bolt{
+    color:var(--amber);
+    font-size:22px;
+  }
+  nav a{
+    color:var(--muted);
+    text-decoration:none;
+    font-size:13px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    margin-left:28px;
+  }
+  nav a:hover{ color:var(--amber); }
+  .navlinks{ display:flex; align-items:center;}
+  @media(max-width:700px){ .navlinks{display:none;} }
+
+  /* HERO / NAMEPLATE */
+  .hero{
+    padding:80px 0 60px;
+    position:relative;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--copper);
+    font-size:13px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  h1{
+    font-family:'Oswald', 'Arial Narrow', sans-serif;
+    font-weight:600;
+    font-size:clamp(34px, 6vw, 64px);
+    line-height:1.05;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    max-width:760px;
+  }
+  h1 span{ color:var(--amber); }
+  .hero p{
+    margin-top:22px;
+    max-width:600px;
+    color:var(--muted);
+    font-size:16px;
+  }
+  .cta-row{ margin-top:36px; display:flex; gap:16px; flex-wrap:wrap; }
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    padding:14px 26px;
+    border-radius:2px;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .btn-primary{ background:var(--amber); color:#141414; font-weight:600;}
+  .btn-primary:hover{ background:#ffc04d; }
+  .btn-ghost{ border:1px solid var(--line); color:var(--text); }
+  .btn-ghost:hover{ border-color:var(--amber); color:var(--amber); }
+
+  /* nameplate card */
+  .nameplate{
+    margin-top:56px;
+    border:1px solid var(--line);
+    background:var(--panel);
+    border-radius:4px;
+    padding:22px 26px;
+    max-width:640px;
+    position:relative;
+  }
+  .nameplate::before{
+    content:"";
+    position:absolute;
+    top:10px; left:10px; right:10px; bottom:10px;
+    border:1px dashed var(--line);
+    border-radius:2px;
+    pointer-events:none;
+  }
+  .nameplate-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--copper);
+    margin-bottom:14px;
+  }
+  .nameplate-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 24px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+  }
+  .nameplate-grid .k{ color:var(--muted); }
+  .nameplate-grid .v{ color:var(--text); }
+
+  /* SECTION HEADER */
+  .section{ padding:64px 0; border-top:1px solid var(--line); }
+  .section-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    margin-bottom:36px; flex-wrap:wrap; gap:12px;
+  }
+  .section-head h2{
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    font-size:26px;
+    letter-spacing:0.03em;
+  }
+  .section-head .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--muted);
+    letter-spacing:0.08em;
+  }
+
+  /* CATALOG GRID */
+  .catalog{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .cat-item{
+    background:var(--panel-2);
+    padding:26px 24px;
+    position:relative;
+  }
+  .cat-item .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--copper);
+    margin-bottom:10px;
+    display:block;
+  }
+  .cat-item h3{
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    font-size:17px;
+    letter-spacing:0.02em;
+    margin-bottom:10px;
+  }
+  .cat-item p{
+    color:var(--muted);
+    font-size:13.5px;
+    line-height:1.6;
+  }
+
+  /* CONTRACT STRIP */
+  .strip{
+    background:var(--panel);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:26px 0;
+  }
+  .strip .wrap{
+    display:flex; gap:40px; flex-wrap:wrap;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--muted);
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+  }
+  .strip b{ color:var(--amber); font-weight:600; }
+
+  /* CONTACT */
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:40px;
+  }
+  @media(max-width:750px){ .contact-grid{ grid-template-columns:1fr; } }
+  .contact-grid p{ color:var(--muted); max-width:460px; margin-bottom:24px; }
+  .field-list{ display:flex; flex-direction:column; gap:14px; }
+  .field-row{
+    display:flex; justify-content:space-between; align-items:center;
+    border-bottom:1px solid var(--line);
+    padding-bottom:12px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+  }
+  .field-row .k{ color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; font-size:11px; }
+  .field-row .v{ color:var(--text); }
+
+  footer{
+    padding:30px 0 40px;
+    border-top:1px solid var(--line);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--muted);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+  }
+
+  /* circuit trace accent line */
+  .trace{
+    position:absolute;
+    left:0; top:0;
+    width:3px; height:0;
+    background:linear-gradient(var(--amber), transparent);
+    animation:draw 1.6s ease-out forwards;
+  }
+  @keyframes draw{ to{ height:100%; } }
+
+  @media(prefers-reduced-motion: reduce){
+    .trace{ animation:none; height:100%; }
+  }
+
+  .wa-float{
+    position:fixed;
+    right:22px; bottom:22px;
+    z-index:50;
+    display:flex; align-items:center; gap:10px;
+    background:#25D366;
+    color:#0B1220;
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    font-size:13px;
+    text-decoration:none;
+    padding:13px 18px;
+    border-radius:30px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.35);
+  }
+  .wa-float:hover{ background:#2fe07a; }
+  .wa-float svg{ width:20px; height:20px; }
+  @media(max-width:600px){
+    .wa-float span{ display:none; }
+    .wa-float{ padding:14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<nav>
+  <div class="brand"><span class="bolt">&#9889;</span>AEROVIX</div>
+  <div class="navlinks">
+    <a href="#products">Products</a>
+    <a href="#services">Services</a>
+    <a href="#contracts">Government &amp; Contracts</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="wrap hero">
+  <div class="eyebrow">Electrical Supply &middot; Distribution &middot; Installation &middot; Contracting</div>
+  <h1>Power, Parts &amp; Products <span>Under One Roof</span></h1>
+  <p>Sales, supply, distribution, installation, maintenance, repair and servicing of domestic, commercial and industrial electrical equipment — plus procurement and contract supply for government, PSU, private and industrial customers.</p>
+  <div class="cta-row">
+    <a href="#contact" class="btn btn-primary">Request a Quote</a>
+    <a href="#products" class="btn btn-ghost">View Product Range</a>
+  </div>
+
+  <div class="nameplate">
+    <div class="nameplate-title">Rating Plate &mdash; Business Details</div>
+    <div class="nameplate-grid">
+      <div class="k">Firm</div><div class="v">Aerovix</div>
+      <div class="k">Category</div><div class="v">Electrical Trading &amp; Contracting</div>
+      <div class="k">Service Area</div><div class="v">Raipur / Chhattisgarh</div>
+      <div class="k">Clientele</div><div class="v">Govt · PSU · Commercial · Industrial</div>
+      <div class="k">Phone</div><div class="v">+91 97765 77779</div>
+      <div class="k">Email</div><div class="v">vaibhav.fande@gmail.com</div>
+    </div>
+  </div>
+</div>
+
+<div class="strip">
+  <div class="wrap">
+    <div><b>GEM / Govt Registered</b> Supplier</div>
+    <div><b>Contract Supply</b> for PSU &amp; Govt Departments</div>
+    <div><b>On-Site</b> Installation &amp; AMC Service</div>
+  </div>
+</div>
+
+<div class="section" id="products">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Product Range</h2>
+      <div class="tag">06 Categories</div>
+    </div>
+    <div class="catalog">
+      <div class="cat-item">
+        <span class="num">01</span>
+        <h3>Lighting Systems</h3>
+        <p>LED lights, street lights, high mast lighting for domestic, commercial and industrial installations.</p>
+      </div>
+      <div class="cat-item">
+        <span class="num">02</span>
+        <h3>Switchgear &amp; Wiring</h3>
+        <p>Switchgears, cables, wires and electrical accessories for new installation and rewiring work.</p>
+      </div>
+      <div class="cat-item">
+        <span class="num">03</span>
+        <h3>Motors &amp; Pumps</h3>
+        <p>Induction motors, industrial motors, submersible pumps and related spare parts.</p>
+      </div>
+      <div class="cat-item">
+        <span class="num">04</span>
+        <h3>Home &amp; Appliances</h3>
+        <p>Ceiling &amp; wall fans, air coolers, air conditioners, heaters, geysers, irons, washing machines.</p>
+      </div>
+      <div class="cat-item">
+        <span class="num">05</span>
+        <h3>Power Tools &amp; Hardware</h3>
+        <p>Power tools, hardware, sanitation items, cleaning and sanitation products.</p>
+      </div>
+      <div class="cat-item">
+        <span class="num">06</span>
+        <h3>Office &amp; General Supply</h3>
+        <p>Stationery, office supplies and general goods for bulk and institutional orders.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Services</h2>
+      <div class="tag">Install &middot; Maintain &middot; Repair</div>
+    </div>
+    <div class="catalog">
+      <div class="cat-item">
+        <span class="num">A</span>
+        <h3>Installation</h3>
+        <p>Site-ready installation for lighting, wiring, switchgear and equipment across all scales.</p>
+      </div>
+      <div class="cat-item">
+        <span class="num">B</span>
+        <h3>Maintenance &amp; AMC</h3>
+        <p>Scheduled maintenance contracts to keep electrical systems running reliably.</p>
+      </div>
+      <div class="cat-item">
+        <span class="num">C</span>
+        <h3>Repair &amp; Servicing</h3>
+        <p>Diagnostic and repair service for equipment, appliances and industrial machinery.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="contracts">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Government &amp; Contract Supply</h2>
+      <div class="tag">Procurement &middot; Trading &middot; Order Supply</div>
+    </div>
+    <p style="color:var(--muted); max-width:640px; font-size:15px;">
+      We undertake procurement, order supply, trading and contract supply engagements for government departments, public sector undertakings, private enterprises, and commercial &amp; industrial clients — from single-item orders to standing supply contracts.
+    </p>
+  </div>
+</div>
+
+<div class="section" id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Get In Touch</h2>
+      <div class="tag">Enquiries &amp; Quotes</div>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <p>For product enquiries, bulk orders, contract supply proposals, or on-site service requests, reach out directly &mdash; we typically respond within one business day.</p>
+        <div class="cta-row" style="margin-top:0;">
+          <a href="https://wa.me/919776577779" target="_blank" rel="noopener" class="btn btn-primary">WhatsApp Us</a>
+          <a href="mailto:vaibhav.fande@gmail.com" class="btn btn-ghost">Email Us</a>
+        </div>
+      </div>
+      <div class="field-list">
+        <div class="field-row"><span class="k">Phone</span><span class="v">+91 97765 77779</span></div>
+        <div class="field-row"><span class="k">Email</span><span class="v">vaibhav.fande@gmail.com</span></div>
+        <div class="field-row"><span class="k">Location</span><span class="v">Raipur, Chhattisgarh</span></div>
+        <div class="field-row"><span class="k">Hours</span><span class="v">Mon&ndash;Sat, 9:00&ndash;19:00</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:8px;">
+    <span>&copy; <span id="year"></span> Aerovix. All rights reserved.</span>
+    <span>Electrical Supply &middot; Distribution &middot; Installation &middot; Contracting</span>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/919776577779" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.607 1.905 6.47L4 29l7.72-1.865A11.93 11.93 0 0 0 16.001 27C22.63 27 28 21.627 28 15S22.63 3 16.001 3Zm0 21.75c-1.94 0-3.75-.53-5.3-1.45l-.38-.22-4.58 1.106 1.128-4.46-.25-.4A9.72 9.72 0 0 1 5.25 15c0-5.936 4.815-10.75 10.751-10.75S26.752 9.064 26.752 15 21.938 24.75 16.001 24.75Zm5.61-7.94c-.307-.154-1.818-.897-2.1-1-.282-.103-.487-.154-.692.154-.205.308-.795 1-.975 1.205-.18.205-.36.23-.667.077-.307-.154-1.296-.478-2.469-1.523-.913-.813-1.53-1.817-1.71-2.124-.18-.308-.02-.474.135-.627.138-.138.307-.36.46-.54.154-.18.205-.308.308-.513.103-.205.052-.385-.026-.539-.077-.154-.692-1.667-.949-2.283-.25-.6-.505-.52-.692-.53l-.59-.01c-.205 0-.539.077-.821.385-.282.308-1.077 1.052-1.077 2.565s1.103 2.975 1.257 3.18c.154.205 2.17 3.313 5.257 4.646.735.317 1.308.507 1.755.649.737.234 1.409.201 1.94.122.592-.088 1.818-.744 2.075-1.462.257-.719.257-1.334.18-1.462-.077-.128-.282-.205-.59-.36Z"/></svg>
+  <span>Chat on WhatsApp</span>
+</a>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
