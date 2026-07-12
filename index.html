@@ -6,8 +6,8 @@
     <meta name="description" content="Aerovix is a trusted electrical manufacturing and supply company in Raipur, Chhattisgarh. Specializing in LED lights, switchgears, submersibles, cables, and tools. GeM registered seller for bulk contracts and retail."/>
     <title>AEROVIX | Industrial Electrical Manufacturing &amp; Supply</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <!-- Google Fonts for Aerovix E-commerce: Poppins (Headings/UI), Inter (Body copy), Space Mono (Technical labels/telemetry) -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+    <!-- Google Fonts for Aerovix Industrial Identity: Barlow Condensed (Headings), Archivo Narrow (Body), Space Mono (Monospace specs/labels) -->
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&amp;family=Archivo+Narrow:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <script id="tailwind-config">
         tailwind.config = {
@@ -36,11 +36,11 @@
                         "border-neutral": "var(--line)"
                     },
                     "borderRadius": {
-                        "DEFAULT": "8px",
-                        "sm": "4px",
-                        "md": "8px",
-                        "lg": "12px",
-                        "xl": "16px",
+                        "DEFAULT": "2px",
+                        "sm": "2px",
+                        "md": "4px",
+                        "lg": "6px",
+                        "xl": "8px",
                         "full": "9999px"
                     },
                     "spacing": {
@@ -51,9 +51,9 @@
                         "gutter": "16px"
                     },
                     "fontFamily": {
-                        "headline": ["Poppins", "sans-serif"],
-                        "body": ["Inter", "sans-serif"],
-                        "mono": ["Space Mono", "monospace"]
+                        "headline": ["Barlow Condensed"],
+                        "body": ["Archivo Narrow"],
+                        "mono": ["Space Mono"]
                     }
                 },
             },
@@ -91,19 +91,41 @@
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
 
-        /* E-commerce Card with soft shadows and clean rounded borders */
+        /* Rugged Industrial Card with sharp corner L-brackets and soft shadow depth */
         .industrial-card {
             border: 1px solid var(--line);
             position: relative;
             background: var(--panel);
-            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
-            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+        }
+        .industrial-card::before {
+            content: "";
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: 8px;
+            height: 2px;
+            background: var(--amber); /* Blue primary accent */
+        }
+        .industrial-card::after {
+            content: "";
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: 2px;
+            height: 8px;
+            background: var(--amber); /* Blue primary accent */
         }
 
-        /* Clean Accent Highlight Strip */
+        /* Caution diagonal stripe background pattern for accents (light theme subtle stripes) */
         .caution-strip {
-            background: var(--primary);
-            border-radius: 9999px;
+            background: repeating-linear-gradient(
+                45deg,
+                var(--line),
+                var(--line) 8px,
+                var(--panel) 8px,
+                var(--panel) 16px
+            );
         }
 
         .floating-wa {
@@ -129,33 +151,32 @@
             background: var(--amber);
         }
 
-        /* Modern etched inputs */
+        /* Light mode etched inputs */
         .input-etched {
             background-color: var(--panel-2);
             border: 1px solid var(--line);
-            box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.04);
+            box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.06);
             color: var(--text);
-            border-radius: 8px;
         }
         .input-etched:focus {
             border-color: var(--amber);
             outline: none;
-            box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.04), 0 0 4px rgba(37, 99, 235, 0.2);
+            box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.06), 0 0 4px rgba(37, 99, 235, 0.2);
         }
     </style>
 </head>
-<body class="bg-background text-on-surface font-body text-base selection:bg-primary/20 selection:text-primary">
+<body class="bg-background text-on-surface font-body selection:bg-primary/20 selection:text-primary">
 
     <!-- QUOTE CART OVERLAY & DRAWER -->
     <div id="cartBackdrop" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[65] opacity-0 pointer-events-none transition-opacity duration-300" onclick="toggleCart(false)"></div>
-    <div id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-surface border-l border-border-neutral z-[70] translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col rounded-l-xl">
+    <div id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-surface border-l border-border-neutral z-[70] translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col">
         <!-- Drawer Header -->
-        <div class="flex justify-between items-center p-5 border-b border-border-neutral bg-surface-container rounded-tl-xl">
+        <div class="flex justify-between items-center p-5 border-b border-border-neutral bg-surface-container">
             <div class="flex items-center gap-3">
                 <span class="material-symbols-outlined text-primary text-[24px]">precision_manufacturing</span>
                 <h3 class="font-headline text-lg font-bold uppercase tracking-wider text-on-surface">Quotation Request Console</h3>
             </div>
-            <button class="text-on-surface-variant hover:text-primary transition-colors p-1.5 active:scale-95 border border-border-neutral rounded-full bg-surface" onclick="toggleCart(false)" aria-label="Close cart">
+            <button class="text-on-surface-variant hover:text-primary transition-colors p-1.5 active:scale-95 border border-border-neutral rounded-[2px] bg-surface" onclick="toggleCart(false)" aria-label="Close cart">
                 <span class="material-symbols-outlined text-[20px]">close</span>
             </button>
         </div>
@@ -169,34 +190,34 @@
         </div>
 
         <!-- Drawer Footer (Customer Details Form) -->
-        <div id="cartFormContainer" class="p-5 border-t border-border-neutral bg-surface-container hidden rounded-bl-xl">
+        <div id="cartFormContainer" class="p-5 border-t border-border-neutral bg-surface-container hidden">
             <h4 class="font-headline text-sm font-bold uppercase tracking-wider text-primary mb-3">Requester Telemetry</h4>
-            <form id="quoteSubmitForm" class="space-y-3 text-xs" onsubmit="submitQuotation(event)">
+            <form id="quoteSubmitForm" class="space-y-3 font-mono text-xs" onsubmit="submitQuotation(event)">
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="text-[10px] text-on-surface-variant block mb-1 uppercase font-semibold">Full Name *</label>
-                        <input required id="quoteName" class="w-full input-etched px-3 py-1.5 text-xs transition-all" type="text" placeholder="e.g. Vaibhav Fande"/>
+                        <label class="text-[10px] text-on-surface-variant block mb-1 uppercase">Full Name *</label>
+                        <input required id="quoteName" class="w-full input-etched px-3 py-1.5 text-xs rounded-[2px] transition-all" type="text" placeholder="e.g. Vaibhav Fande"/>
                     </div>
                     <div>
-                        <label class="text-[10px] text-on-surface-variant block mb-1 uppercase font-semibold">Phone No. *</label>
-                        <input required id="quotePhone" class="w-full input-etched px-3 py-1.5 text-xs transition-all" type="tel" placeholder="e.g. 9876543210"/>
+                        <label class="text-[10px] text-on-surface-variant block mb-1 uppercase">Phone No. *</label>
+                        <input required id="quotePhone" class="w-full input-etched px-3 py-1.5 text-xs rounded-[2px] transition-all" type="tel" placeholder="e.g. 9876543210"/>
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="text-[10px] text-on-surface-variant block mb-1 uppercase font-semibold">Company Name</label>
-                        <input id="quoteCompany" class="w-full input-etched px-3 py-1.5 text-xs transition-all" type="text" placeholder="e.g. Aerovix Corp"/>
+                        <label class="text-[10px] text-on-surface-variant block mb-1 uppercase">Company Name</label>
+                        <input id="quoteCompany" class="w-full input-etched px-3 py-1.5 text-xs rounded-[2px] transition-all" type="text" placeholder="e.g. Aerovix Corp"/>
                     </div>
                     <div>
-                        <label class="text-[10px] text-on-surface-variant block mb-1 uppercase font-semibold">Delivery Location *</label>
-                        <input required id="quoteLocation" class="w-full input-etched px-3 py-1.5 text-xs transition-all" type="text" placeholder="e.g. Raipur, CG"/>
+                        <label class="text-[10px] text-on-surface-variant block mb-1 uppercase">Delivery Location *</label>
+                        <input required id="quoteLocation" class="w-full input-etched px-3 py-1.5 text-xs rounded-[2px] transition-all" type="text" placeholder="e.g. Raipur, CG"/>
                     </div>
                 </div>
                 <div>
-                    <label class="text-[10px] text-on-surface-variant block mb-1 uppercase font-semibold">Order Notes / Specifications</label>
-                    <textarea id="quoteNotes" class="w-full input-etched px-3 py-1.5 text-xs transition-all" rows="2" placeholder="e.g. Needs ISI certification, copper winding..."></textarea>
+                    <label class="text-[10px] text-on-surface-variant block mb-1 uppercase">Order Notes / Specifications</label>
+                    <textarea id="quoteNotes" class="w-full input-etched px-3 py-1.5 text-xs rounded-[2px] transition-all" rows="2" placeholder="e.g. Needs ISI certification, copper winding..."></textarea>
                 </div>
-                <button type="submit" class="w-full bg-primary hover:bg-[#1d4ed8] text-white font-headline font-bold uppercase tracking-wider py-3 rounded-full active:scale-[0.98] transition-all text-sm flex items-center justify-center gap-2">
+                <button type="submit" class="w-full bg-primary hover:bg-[#1d4ed8] text-white font-headline font-bold uppercase tracking-wider py-3 rounded-[2px] active:scale-[0.98] transition-all text-sm flex items-center justify-center gap-2">
                     <span class="material-symbols-outlined text-sm">send</span>
                     Submit Quotation Request
                 </button>
@@ -213,7 +234,7 @@
             </div>
             
             <!-- Desktop navigation links (Light Text on Navy background with sliding underlines) -->
-            <div class="hidden md:flex gap-8 items-center font-headline text-xs uppercase tracking-wider font-semibold">
+            <div class="hidden md:flex gap-8 items-center font-headline text-xs uppercase tracking-wider">
                 <a class="relative text-slate-300 hover:text-primary transition-colors pb-0.5 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all hover:after:w-full" href="#about">About</a>
                 <a class="relative text-slate-300 hover:text-primary transition-colors pb-0.5 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all hover:after:w-full" href="#catalog">Catalog</a>
                 <a class="relative text-slate-300 hover:text-primary transition-colors pb-0.5 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all hover:after:w-full" href="#contracts">Government Supply</a>
@@ -241,7 +262,7 @@
                     <span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">precision_manufacturing</span>
                     <span class="font-headline text-xl font-black text-white tracking-tighter uppercase">AEROVIX</span>
                 </div>
-                <button class="text-white p-1.5 border border-white/10 rounded-full" id="closeMenu" aria-label="Close menu">
+                <button class="text-white p-1.5 border border-white/10 rounded-[2px]" id="closeMenu" aria-label="Close menu">
                     <span class="material-symbols-outlined text-[24px]">close</span>
                 </button>
             </div>
@@ -252,7 +273,7 @@
                 <a class="text-slate-300 hover:text-primary border-b border-white/5 pb-2" href="#contact">Contact</a>
             </div>
             <div class="mt-auto">
-                <button onclick="toggleCart(true); document.getElementById('closeMenu').click();" class="block w-full bg-primary text-white font-headline text-md font-bold uppercase py-3.5 tracking-wider text-center active:scale-95 transition-transform rounded-full">
+                <button onclick="toggleCart(true); document.getElementById('closeMenu').click();" class="block w-full bg-primary text-white font-headline text-md font-bold uppercase py-3.5 tracking-wider text-center active:scale-95 transition-transform rounded-[2px]">
                     View Quotation Console
                 </button>
             </div>
@@ -260,80 +281,77 @@
     </div>
 
     <!-- HERO SECTION -->
-    <header class="relative pt-28 pb-16 md:pt-36 md:pb-24 blueprint-grid bg-slate-50/50 overflow-hidden border-b border-border-neutral">
+    <header class="relative pt-24 pb-16 md:pt-36 md:pb-24 blueprint-grid bg-slate-50/50 overflow-hidden border-b border-border-neutral">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-background/95 z-0"></div>
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
                 <div class="lg:col-span-8">
-                    <!-- Trust Badge Inset Tag -->
-                    <div class="inline-flex items-center gap-2 border border-outline-variant px-3 py-1 bg-surface-container mb-6 rounded-full">
-                        <span class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></span>
-                        <span class="font-headline text-[10px] font-bold text-primary uppercase tracking-wider">MFG UNIT RAIPUR // ACTIVE</span>
+                    <div class="inline-flex items-center gap-2 border border-outline-variant px-3 py-1 bg-surface-container mb-6">
+                        <span class="w-1.5 h-1.5 bg-primary rounded-none animate-pulse"></span>
+                        <span class="font-mono text-[10px] text-primary uppercase tracking-widest">[ SYSTEM OK // MFG UNIT RAIPUR ]</span>
                     </div>
-                    <h1 class="font-headline text-3xl md:text-5xl text-on-surface font-extrabold leading-tight mb-6 tracking-tight">
-                        Manufactured &amp; Supplied Directly From<br/>
-                        <span class="text-primary italic">Raipur, Chhattisgarh.</span>
+                    <h1 class="font-headline text-4xl md:text-6xl text-on-surface font-extrabold leading-[1.05] mb-6 uppercase tracking-tighter">
+                        MANUFACTURED &amp;<br/>
+                        SUPPLIED DIRECTLY FROM<br/>
+                        <span class="text-primary italic">RAIPUR, CHHATTISGARH.</span>
                     </h1>
                     <p class="text-on-surface-variant text-base md:text-lg mb-8 leading-relaxed max-w-2xl">
                         Aerovix manufactures high-grade LED lighting arrays, switchgear systems, distribution blocks, submersibles, and power tools. We support B2B contractors, government procurement (GeM registered), and bulk commercial infrastructure pipelines directly from our central Raipur facilities.
                     </p>
                     <div class="flex flex-wrap gap-4 mb-8">
-                        <a href="#catalog" class="bg-primary hover:bg-[#1d4ed8] text-white px-6 py-3 font-headline text-sm font-bold uppercase tracking-wider transition-all text-center rounded-full shadow-sm">
+                        <a href="#catalog" class="bg-primary hover:bg-[#1d4ed8] text-white px-6 py-3 font-headline text-sm font-bold uppercase tracking-wider transition-all text-center rounded-[2px]">
                             Browse Catalog
                         </a>
-                        <button onclick="toggleCart(true)" class="border border-primary text-primary px-6 py-3 font-headline text-sm font-bold uppercase tracking-wider hover:bg-primary/10 transition-all text-center rounded-full">
+                        <button onclick="toggleCart(true)" class="border border-primary text-primary px-6 py-3 font-headline text-sm font-bold uppercase tracking-wider hover:bg-primary/10 transition-all text-center rounded-[2px]">
                             Request a Quotation
                         </button>
                     </div>
                     
-                    <!-- Trust Badges Under Buttons (Marketplace pill style) -->
-                    <div class="flex flex-wrap gap-3 items-center text-xs font-semibold">
-                        <div class="flex items-center gap-1.5 px-3 py-1 bg-blue-50 text-[#2563EB] rounded-full border border-blue-100 shadow-sm">
-                            <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">verified</span>
-                            <span>GeM Registered Seller</span>
+                    <!-- Trust Badges Under Buttons -->
+                    <div class="flex flex-wrap gap-5 items-center font-mono text-[11px]">
+                        <div class="flex items-center gap-2 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-primary text-[16px]">verified</span>
+                            <span>[ GeM REGISTERED VENDOR ]</span>
                         </div>
-                        <div class="flex items-center gap-1.5 px-3 py-1 bg-green-50 text-[#16A34A] rounded-full border border-green-100 shadow-sm">
-                            <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
-                            <span>12-24 Months Warranty</span>
-                        </div>
-                        <div class="flex items-center gap-1.5 px-3 py-1 bg-amber-50 text-[#D97706] rounded-full border border-amber-100 shadow-sm">
-                            <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
-                            <span>ISO 9001:2015 Certified</span>
+                        <div class="h-3 w-px bg-border-neutral hidden sm:block"></div>
+                        <div class="flex items-center gap-2 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-primary text-[16px]">verified_user</span>
+                            <span>[ FULL PRODUCT WARRANTY ]</span>
                         </div>
                     </div>
                 </div>
                 <!-- Rating Plate Card -->
                 <div class="lg:col-span-4 mt-8 lg:mt-0">
                     <div class="industrial-card p-6">
-                        <div class="font-headline text-[11px] font-bold text-on-surface-variant mb-4 uppercase tracking-wider opacity-60">REGIONAL SPECIFICATION SUMMARY</div>
-                        <div class="space-y-3 text-xs">
+                        <div class="font-mono text-[10px] text-on-surface-variant mb-4 uppercase tracking-tighter opacity-50">[ RATING SPEC PLATE // REG-AX-2026 ]</div>
+                        <div class="space-y-3 font-mono text-xs">
                             <div class="flex justify-between items-end border-b border-border-neutral pb-1.5">
-                                <span class="text-on-surface-variant uppercase text-[10px] font-semibold">FIRM NAME</span>
+                                <span class="text-on-surface-variant uppercase text-[10px]">FIRM NAME</span>
                                 <span class="font-headline text-base font-bold text-primary">AEROVIX</span>
                             </div>
                             <div class="flex justify-between items-end border-b border-border-neutral pb-1.5">
-                                <span class="text-on-surface-variant uppercase text-[10px] font-semibold">ORIGIN UNIT</span>
+                                <span class="text-on-surface-variant uppercase text-[10px]">ORIGIN UNIT</span>
                                 <span class="text-on-surface font-medium text-right">Raipur, CG, India</span>
                             </div>
                             <div class="flex justify-between items-end border-b border-border-neutral pb-1.5">
-                                <span class="text-on-surface-variant uppercase text-[10px] font-semibold">OPERATIONAL STATE</span>
+                                <span class="text-on-surface-variant uppercase text-[10px]">OPERATIONAL STATE</span>
                                 <span class="text-on-surface font-medium">Manufacturing / supply</span>
                             </div>
                             <div class="flex justify-between items-end border-b border-border-neutral pb-1.5">
-                                <span class="text-on-surface-variant uppercase text-[10px] font-semibold">TELEPHONE</span>
+                                <span class="text-on-surface-variant uppercase text-[10px]">TELEPHONE</span>
                                 <a href="tel:+919776577779" class="text-on-surface hover:text-primary transition-colors">+91 97765 77779</a>
                             </div>
                             <div class="flex justify-between items-end border-b border-border-neutral pb-1.5">
-                                <span class="text-on-surface-variant uppercase text-[10px] font-semibold">GeM CODE</span>
+                                <span class="text-on-surface-variant uppercase text-[10px]">GeM CODE</span>
                                 <div class="text-right">
-                                    <span class="block text-on-surface font-semibold">REGISTERED SELLER</span>
+                                    <span class="block text-on-surface font-medium">REGISTERED SELLER</span>
                                     <span class="block text-[9px] text-primary font-bold">GEM/2024/SUPP/9412</span>
                                 </div>
                             </div>
                         </div>
                         <div class="mt-4 flex gap-2 items-center">
-                            <span class="w-2 h-2 bg-green-500 inline-block rounded-full animate-pulse"></span>
-                            <span class="font-headline text-[9px] text-on-surface-variant uppercase tracking-wider font-bold">L1 TENDER ELIGIBILITY ACTIVE</span>
+                            <span class="w-2 h-2 bg-green-500 inline-block animate-pulse"></span>
+                            <span class="font-mono text-[9px] text-on-surface-variant uppercase tracking-wider font-bold">L1 TENDER ELIGIBILITY ACTIVE</span>
                         </div>
                     </div>
                 </div>
@@ -345,25 +363,25 @@
     <div class="bg-surface border-b border-border-neutral">
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="flex items-center gap-4 p-4 border border-border-neutral bg-surface-container shadow-sm rounded-xl">
+                <div class="flex items-center gap-4 p-3 border border-border-neutral bg-surface-container shadow-sm">
                     <span class="material-symbols-outlined text-primary text-2xl">verified</span>
                     <div>
                         <div class="font-headline text-sm font-bold uppercase text-on-surface">Standard Warranty</div>
-                        <div class="text-xs text-on-surface-variant">Coverage on all manufactured goods</div>
+                        <div class="font-mono text-[10px] text-on-surface-variant">Coverage on all manufactured goods</div>
                     </div>
                 </div>
-                <div class="flex items-center gap-4 p-4 border border-border-neutral bg-surface-container shadow-sm rounded-xl">
+                <div class="flex items-center gap-4 p-3 border border-border-neutral bg-surface-container shadow-sm">
                     <span class="material-symbols-outlined text-primary text-2xl">engineering</span>
                     <div>
                         <div class="font-headline text-sm font-bold uppercase text-on-surface">Installation Support</div>
-                        <div class="text-xs text-on-surface-variant">On-site setup and service engineering</div>
+                        <div class="font-mono text-[10px] text-on-surface-variant">On-site setup and service engineering</div>
                     </div>
                 </div>
-                <div class="flex items-center gap-4 p-4 border border-border-neutral bg-surface-container shadow-sm rounded-xl">
+                <div class="flex items-center gap-4 p-3 border border-border-neutral bg-surface-container shadow-sm">
                     <span class="material-symbols-outlined text-primary text-2xl">inventory_2</span>
                     <div>
                         <div class="font-headline text-sm font-bold uppercase text-on-surface">Bulk &amp; Retail welcome</div>
-                        <div class="text-xs text-on-surface-variant">Flexible order sizing for B2B &amp; homes</div>
+                        <div class="font-mono text-[10px] text-on-surface-variant">Flexible order sizing for B2B &amp; homes</div>
                     </div>
                 </div>
             </div>
@@ -374,8 +392,8 @@
     <section class="py-20 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop" id="about">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-7">
-                <span class="font-headline text-[11px] font-bold text-primary uppercase block tracking-wider mb-2">// CORPORATE MATRIX</span>
-                <h2 class="font-headline text-3xl md:text-4xl font-black text-on-surface tracking-tight uppercase mb-6">Local Production.<br><span class="text-on-surface-variant/50">National Standards.</span></h2>
+                <span class="font-mono text-[11px] text-primary uppercase block tracking-[0.2em] mb-2">// CORPORATE MATRIX</span>
+                <h2 class="font-headline text-3xl md:text-5xl font-black text-on-surface tracking-tighter uppercase mb-6">LOCAL PRODUCTION.<br><span class="text-on-surface-variant/50">NATIONAL STANDARDS.</span></h2>
                 <div class="space-y-4 text-on-surface-variant text-base leading-relaxed">
                     <p>
                         Aerovix operates as a specialized manufacturing and supply unit based in Raipur, Chhattisgarh. Our facility focuses on high-precision electrical assembly, metal fabrication, and industrial trading to bridge the gap between large-scale engineering requirements and local availability.
@@ -384,12 +402,12 @@
                         By maintaining a lean, agile production line, we ensure that every motor, switchgear panel, and lighting fixture meets stringent safety audits before dispatch. Our strategic location allows us to serve the industrial heartland of Central India with unmatched speed and technical precision.
                     </p>
                 </div>
-                <div class="mt-8 grid grid-cols-2 gap-4">
-                    <div class="border border-border-neutral p-5 bg-surface-container shadow-sm rounded-xl">
+                <div class="mt-8 grid grid-cols-2 gap-4 font-mono">
+                    <div class="border border-border-neutral p-5 bg-surface-container shadow-sm rounded-[2px]">
                         <span class="text-[10px] font-bold text-primary uppercase block mb-1">[ OUR CORE VISION ]</span>
                         <p class="text-xs text-on-surface-variant leading-relaxed">To be the most reliable supply partner for India's infrastructure through technical honesty.</p>
                     </div>
-                    <div class="border border-border-neutral p-5 bg-surface-container shadow-sm rounded-xl">
+                    <div class="border border-border-neutral p-5 bg-surface-container shadow-sm rounded-[2px]">
                         <span class="text-[10px] font-bold text-primary uppercase block mb-1">[ TECHNICAL CAPABILITY ]</span>
                         <p class="text-xs text-on-surface-variant leading-relaxed">Specializing in heavy duty switchgear panels, high mast LED light systems, &amp; submersible drives.</p>
                     </div>
@@ -399,27 +417,27 @@
             <!-- Specs Info-Table Style Box -->
             <div class="lg:col-span-5">
                 <div class="industrial-card p-6">
-                    <div class="caution-strip h-1 w-full mb-4"></div>
-                    <div class="font-headline text-[11px] font-bold text-on-surface-variant mb-4 uppercase tracking-wider opacity-60">REGIONAL SPECIFICATION SUMMARY</div>
-                    <div class="space-y-3 border-t border-border-neutral/30 pt-3 text-xs">
+                    <div class="caution-strip h-2 w-full mb-4"></div>
+                    <div class="font-mono text-[10px] text-on-surface-variant mb-4 uppercase tracking-tighter opacity-50">[ REGIONAL SPECIFICATION SUMMARY ]</div>
+                    <div class="space-y-3 font-mono text-xs border-t border-border-neutral/30 pt-3">
                         <div class="flex justify-between items-center py-1.5 border-b border-border-neutral/30">
-                            <span class="text-on-surface-variant uppercase text-[10px] font-semibold">FACILITY HQ</span>
+                            <span class="text-on-surface-variant uppercase text-[10px]">FACILITY HQ</span>
                             <span class="text-primary font-bold">RAIPUR, CG, INDIA</span>
                         </div>
                         <div class="flex justify-between items-center py-1.5 border-b border-border-neutral/30">
-                            <span class="text-on-surface-variant uppercase text-[10px] font-semibold">FOCUS AREA</span>
+                            <span class="text-on-surface-variant uppercase text-[10px]">FOCUS AREA</span>
                             <span class="text-on-surface font-semibold">MFG &amp; TRADING</span>
                         </div>
                         <div class="flex justify-between items-center py-1.5 border-b border-border-neutral/30">
-                            <span class="text-on-surface-variant uppercase text-[10px] font-semibold">WARRANTY POLICY</span>
+                            <span class="text-on-surface-variant uppercase text-[10px]">WARRANTY POLICY</span>
                             <span class="text-on-surface font-semibold">12-24 MONTHS</span>
                         </div>
                         <div class="flex justify-between items-center py-1.5 border-b border-border-neutral/30">
-                            <span class="text-on-surface-variant uppercase text-[10px] font-semibold">FIELD ASSISTANCE</span>
+                            <span class="text-on-surface-variant uppercase text-[10px]">FIELD ASSISTANCE</span>
                             <span class="text-on-surface font-semibold">ON-SITE AMC SUPPORT</span>
                         </div>
                         <div class="flex justify-between items-center py-1.5">
-                            <span class="text-on-surface-variant uppercase text-[10px] font-semibold">TARGET MARKET</span>
+                            <span class="text-on-surface-variant uppercase text-[10px]">TARGET MARKET</span>
                             <span class="text-primary font-bold">GOVT &amp; PRIVATE CONTRACTORS</span>
                         </div>
                     </div>
@@ -433,11 +451,11 @@
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
                 <div>
-                    <span class="font-headline text-[11px] font-bold text-primary uppercase block tracking-wider mb-2">// DIRECTORY DIRECT</span>
-                    <h2 class="font-headline text-3xl md:text-4xl font-black text-on-surface tracking-tight uppercase">INDUSTRIAL CATALOG</h2>
+                    <span class="font-mono text-[11px] text-primary uppercase block tracking-[0.2em] mb-2">// DIRECTORY DIRECT</span>
+                    <h2 class="font-headline text-3xl md:text-5xl font-black text-on-surface tracking-tighter uppercase">INDUSTRIAL CATALOG</h2>
                 </div>
                 <div class="h-px bg-border-neutral flex-grow mx-8 hidden md:block"></div>
-                <div class="font-headline text-[11px] font-semibold text-on-surface-variant uppercase">Select category to expand items [01-06]</div>
+                <div class="font-mono text-[10px] text-on-surface-variant uppercase">Select category to expand items [01-06]</div>
             </div>
 
             <!-- Categories Grid -->
@@ -454,8 +472,8 @@
                             LED High Bay fixtures, Solar Street lamps, flood lights, commercial panels, and 16M high masts.
                         </p>
                     </div>
-                    <button onclick="toggleCategory('lighting')" class="text-primary hover:text-white font-headline font-semibold text-xs uppercase tracking-wider flex items-center gap-1 group/btn mt-auto self-start border border-border-neutral px-4 py-1.5 bg-surface-container rounded-full">
-                        <span>View items</span>
+                    <button onclick="toggleCategory('lighting')" class="text-primary hover:text-white font-mono text-[11px] uppercase tracking-wider flex items-center gap-1 group/btn mt-auto self-start border border-border-neutral px-3 py-1 bg-surface-container">
+                        <span>[ View items ]</span>
                         <span class="material-symbols-outlined text-xs transition-transform group-hover/btn:translate-y-0.5" id="arrow-lighting">expand_more</span>
                     </button>
                 </div>
@@ -472,8 +490,8 @@
                             Armoured copper cables, MCCBs, distribution boards, copper flexible wires, and busbars.
                         </p>
                     </div>
-                    <button onclick="toggleCategory('switchgear')" class="text-primary hover:text-white font-headline font-semibold text-xs uppercase tracking-wider flex items-center gap-1 group/btn mt-auto self-start border border-border-neutral px-4 py-1.5 bg-surface-container rounded-full">
-                        <span>View items</span>
+                    <button onclick="toggleCategory('switchgear')" class="text-primary hover:text-white font-mono text-[11px] uppercase tracking-wider flex items-center gap-1 group/btn mt-auto self-start border border-border-neutral px-3 py-1 bg-surface-container">
+                        <span>[ View items ]</span>
                         <span class="material-symbols-outlined text-xs transition-transform group-hover/btn:translate-y-0.5" id="arrow-switchgear">expand_more</span>
                     </button>
                 </div>
@@ -490,8 +508,8 @@
                             3-Phase induction motors, 15-stage borewell submersibles, monoblock clean water drives, and starters.
                         </p>
                     </div>
-                    <button onclick="toggleCategory('motors')" class="text-primary hover:text-white font-headline font-semibold text-xs uppercase tracking-wider flex items-center gap-1 group/btn mt-auto self-start border border-border-neutral px-4 py-1.5 bg-surface-container rounded-full">
-                        <span>View items</span>
+                    <button onclick="toggleCategory('motors')" class="text-primary hover:text-white font-mono text-[11px] uppercase tracking-wider flex items-center gap-1 group/btn mt-auto self-start border border-border-neutral px-3 py-1 bg-surface-container">
+                        <span>[ View items ]</span>
                         <span class="material-symbols-outlined text-xs transition-transform group-hover/btn:translate-y-0.5" id="arrow-motors">expand_more</span>
                     </button>
                 </div>
@@ -508,8 +526,8 @@
                             Ceiling fans, heavy duty air coolers (75L),split inverter AC units, and glasslined storage heaters.
                         </p>
                     </div>
-                    <button onclick="toggleCategory('appliances')" class="text-primary hover:text-white font-headline font-semibold text-xs uppercase tracking-wider flex items-center gap-1 group/btn mt-auto self-start border border-border-neutral px-4 py-1.5 bg-surface-container rounded-full">
-                        <span>View items</span>
+                    <button onclick="toggleCategory('appliances')" class="text-primary hover:text-white font-mono text-[11px] uppercase tracking-wider flex items-center gap-1 group/btn mt-auto self-start border border-border-neutral px-3 py-1 bg-surface-container">
+                        <span>[ View items ]</span>
                         <span class="material-symbols-outlined text-xs transition-transform group-hover/btn:translate-y-0.5" id="arrow-appliances">expand_more</span>
                     </button>
                 </div>
@@ -526,8 +544,8 @@
                             Impact drills, angle grinders, SDS rotary hammer systems, and brass hardware gate valves.
                         </p>
                     </div>
-                    <button onclick="toggleCategory('powertools')" class="text-primary hover:text-white font-headline font-semibold text-xs uppercase tracking-wider flex items-center gap-1 group/btn mt-auto self-start border border-border-neutral px-4 py-1.5 bg-surface-container rounded-full">
-                        <span>View items</span>
+                    <button onclick="toggleCategory('powertools')" class="text-primary hover:text-white font-mono text-[11px] uppercase tracking-wider flex items-center gap-1 group/btn mt-auto self-start border border-border-neutral px-3 py-1 bg-surface-container">
+                        <span>[ View items ]</span>
                         <span class="material-symbols-outlined text-xs transition-transform group-hover/btn:translate-y-0.5" id="arrow-powertools">expand_more</span>
                     </button>
                 </div>
@@ -544,31 +562,31 @@
                             Bulk copier papers, certified safety HDPE helmets, reflective vests, and sanitation/hygiene bulk cans.
                         </p>
                     </div>
-                    <button onclick="toggleCategory('officesupply')" class="text-primary hover:text-white font-headline font-semibold text-xs uppercase tracking-wider flex items-center gap-1 group/btn mt-auto self-start border border-border-neutral px-4 py-1.5 bg-surface-container rounded-full">
-                        <span>View items</span>
+                    <button onclick="toggleCategory('officesupply')" class="text-primary hover:text-white font-mono text-[11px] uppercase tracking-wider flex items-center gap-1 group/btn mt-auto self-start border border-border-neutral px-3 py-1 bg-surface-container">
+                        <span>[ View items ]</span>
                         <span class="material-symbols-outlined text-xs transition-transform group-hover/btn:translate-y-0.5" id="arrow-officesupply">expand_more</span>
                     </button>
                 </div>
             </div>
 
             <!-- EXPANDABLE PRODUCT TABLES -->
-            <div id="productAccordionSection" class="industrial-card bg-surface p-6 hidden">
+            <div id="productAccordionSection" class="industrial-card bg-surface p-5 hidden">
                 <div class="flex justify-between items-center mb-5 pb-3 border-b border-border-neutral">
                     <div class="flex items-center gap-3">
                         <span class="material-symbols-outlined text-primary" id="currentCategoryIcon">lists</span>
                         <h4 class="font-headline text-lg font-bold text-on-surface uppercase" id="currentCategoryTitle">Category Inventory</h4>
                     </div>
-                    <button class="text-on-surface-variant hover:text-primary border border-border-neutral p-1.5 rounded-full" onclick="closeAccordion()">
+                    <button class="text-on-surface-variant hover:text-primary border border-border-neutral p-1 rounded-[2px]" onclick="closeAccordion()">
                         <span class="material-symbols-outlined text-sm">close</span>
                     </button>
                 </div>
                 
                 <div class="overflow-x-auto custom-scroll">
-                    <table class="w-full text-left text-xs border-collapse">
+                    <table class="w-full text-left font-mono text-xs border-collapse">
                         <thead>
-                            <tr class="border-b border-border-neutral text-on-surface-variant uppercase text-[10px] tracking-wider bg-surface-container font-semibold">
-                                <th class="py-3 px-4 w-[40%]">Item Specifications</th>
-                                <th class="py-3 px-4 w-[25%]">Technical Dials</th>
+                            <tr class="border-b border-border-neutral text-on-surface-variant uppercase text-[10px] tracking-wider bg-surface-container">
+                                <th class="py-3 px-4 w-[40%]">Item Specs</th>
+                                <th class="py-3 px-4 w-[25%]">Telemetry Specs</th>
                                 <th class="py-3 px-4 w-[20%] text-center">Quantity</th>
                                 <th class="py-3 px-4 w-[15%] text-right">Action</th>
                             </tr>
@@ -587,27 +605,27 @@
     <section class="py-20 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop" id="services">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-                <span class="font-headline text-[11px] font-bold text-primary uppercase block tracking-wider mb-2">// TECHNICAL SERVICE FIELD</span>
-                <h2 class="font-headline text-3xl md:text-4xl font-black text-on-surface mt-2 mb-8 uppercase leading-tight">On-Site Maintenance Solutions</h2>
+                <span class="font-mono text-[11px] text-primary uppercase block tracking-[0.2em] mb-2">// TECHNICAL SERVICE FIELD</span>
+                <h2 class="font-headline text-3xl md:text-5xl font-black text-on-surface mt-2 mb-8 uppercase leading-none">ON-SITE MAINTENANCE SOLUTIONS</h2>
                 <p class="text-on-surface-variant text-base mb-10 leading-relaxed">
                     Aerovix performs physical layout designs, installations, and repairs across Raipur. Our Class-A contractor team ensures that safety codes and industrial telemetry operate at peak performance.
                 </p>
-                <div class="space-y-4">
-                    <div class="flex items-start gap-5 p-5 border border-border-neutral bg-surface shadow-sm rounded-xl">
+                <div class="space-y-4 font-mono">
+                    <div class="flex items-start gap-5 p-5 border border-border-neutral bg-surface shadow-sm">
                         <span class="material-symbols-outlined text-primary text-3xl mt-0.5">bolt</span>
                         <div>
                             <h4 class="font-headline text-md font-bold text-on-surface uppercase mb-1">Contract Installation</h4>
                             <p class="text-xs text-on-surface-variant leading-relaxed">Sub-station wiring, high-mast mounting, and layout commissioning for government and private offices.</p>
                         </div>
                     </div>
-                    <div class="flex items-start gap-5 p-5 border border-border-neutral bg-surface shadow-sm rounded-xl">
+                    <div class="flex items-start gap-5 p-5 border border-border-neutral bg-surface shadow-sm">
                         <span class="material-symbols-outlined text-primary text-3xl mt-0.5">history_toggle_off</span>
                         <div>
                             <h4 class="font-headline text-md font-bold text-on-surface uppercase mb-1">Preventive AMC Operations</h4>
                             <p class="text-xs text-on-surface-variant leading-relaxed">Systematic electrical maintenance checkups, safety audits, and replacements under annual contracts.</p>
                         </div>
                     </div>
-                    <div class="flex items-start gap-5 p-5 border border-border-neutral bg-surface shadow-sm rounded-xl">
+                    <div class="flex items-start gap-5 p-5 border border-border-neutral bg-surface shadow-sm">
                         <span class="material-symbols-outlined text-primary text-3xl mt-0.5">settings_backup_restore</span>
                         <div>
                             <h4 class="font-headline text-md font-bold text-on-surface uppercase mb-1">Industrial Machinery Support</h4>
@@ -622,7 +640,7 @@
                 <div class="industrial-card overflow-hidden">
                     <img class="w-full aspect-[4/5] object-cover grayscale brightness-95" alt="Electrical engineer working on panel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhQ4-oB3CyGmO516btcYSbZ4jornb4B7T0mHMhutbQXKPI91I0PSkJpWuBVm6bSHnY1qSJkYWKK4zLnxvcq2kCPmJpLUCzVlwKTqF-Nx5htsw29kNP9Pj8Zda-lHY7anu4dn_uLw5NPLJsoCkOXXFijyqzZe703Pl9zoBDxOsMRBWLpTSwfYs1DkKmMqjmAGAFbSayrURNaSBLd55i3CgT8CmDcv7IR0YvBLviWjRd8pzaR-vOrpJEItVz93nbQzLzhQH69ZUEtIcl"/>
                     <div class="absolute bottom-0 left-0 right-0 bg-primary p-3">
-                        <div class="flex justify-between items-center font-headline text-[10px] text-white font-bold tracking-wider">
+                        <div class="flex justify-between items-center font-mono text-[9px] text-white font-bold">
                             <span>OPERATIONS ACTIVE IN CHHATTISGARH</span>
                             <span>RESPONSE: &lt;24HR</span>
                         </div>
@@ -634,31 +652,31 @@
 
     <!-- GOVERNMENT SUPPLY SECTION -->
     <section class="py-20 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop" id="contracts">
-        <div class="bg-surface border border-border-neutral p-6 md:p-12 relative overflow-hidden shadow-sm rounded-xl">
+        <div class="bg-surface border border-border-neutral p-6 md:p-12 relative overflow-hidden shadow-sm">
             <div class="absolute top-0 right-0 p-8 opacity-[0.02]">
                 <span class="material-symbols-outlined text-[150px]">account_balance</span>
             </div>
             <div class="relative z-10 max-w-3xl">
                 <div class="flex items-center gap-3 mb-4">
-                    <span class="bg-primary text-white font-headline text-xs font-bold uppercase px-3 py-1 rounded-full">GeM Registered Seller</span>
-                    <span class="font-headline text-[11px] text-primary font-bold tracking-wider">[ CLASS-A CONTRACTOR ]</span>
+                    <span class="bg-primary text-white font-headline text-xs font-bold uppercase px-3 py-1 rounded-[2px]">GeM Registered Seller</span>
+                    <span class="font-mono text-[10px] text-primary font-bold">[ CLASS-A CONTRACTOR ]</span>
                 </div>
-                <h2 class="font-headline text-3xl md:text-4xl font-black text-on-surface mt-2 mb-6 uppercase tracking-tight">Government Supply &amp; Contract Procurement</h2>
+                <h2 class="font-headline text-3xl md:text-5xl font-black text-on-surface mt-2 mb-6 uppercase tracking-tighter">GOVERNMENT SUPPLY &amp; CONTRACT PROCUREMENT</h2>
                 <p class="text-on-surface-variant text-base mb-8 leading-relaxed">
                     Aerovix is an active registered supplier on the **Government e-Marketplace (GeM)**, servicing bulk supply orders for state divisions, PSUs, and local municipal corporations. We handle tax invoices, safety certification records, and compliance metrics smoothly for official contract procurement.
                 </p>
-                <div class="flex flex-wrap gap-8 items-center border-t border-border-neutral pt-6 mt-6 text-xs">
+                <div class="flex flex-wrap gap-8 items-center border-t border-border-neutral pt-6 mt-6 font-mono text-xs">
                     <div>
-                        <span class="block text-primary font-bold text-lg font-headline">GEM VENDOR ID</span>
-                        <span class="text-[10px] text-on-surface-variant uppercase font-bold tracking-wider">ARVX-GEM-2026</span>
+                        <span class="block text-primary font-bold text-lg">GEM VENDOR ID</span>
+                        <span class="text-[10px] text-on-surface-variant uppercase font-bold">ARVX-GEM-2026</span>
                     </div>
                     <div>
-                        <span class="block text-primary font-bold text-lg font-headline">COMPLIANT AUDIT</span>
-                        <span class="text-[10px] text-on-surface-variant uppercase font-bold tracking-wider">GST &amp; CLASS-A REGISTERED</span>
+                        <span class="block text-primary font-bold text-lg">COMPLIANT AUDIT</span>
+                        <span class="text-[10px] text-on-surface-variant uppercase font-bold">GST &amp; CLASS-A REGISTERED</span>
                     </div>
                     <div>
-                        <span class="block text-primary font-bold text-lg font-headline">CENTRAL DISPATCH</span>
-                        <span class="text-[10px] text-on-surface-variant uppercase font-bold tracking-wider">RAIPUR TRANSPORT HUBS</span>
+                        <span class="block text-primary font-bold text-lg">CENTRAL DISPATCH</span>
+                        <span class="text-[10px] text-on-surface-variant uppercase font-bold">RAIPUR TRANSPORT HUBS</span>
                     </div>
                 </div>
             </div>
@@ -670,17 +688,17 @@
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 <div>
-                    <span class="font-headline text-[11px] font-bold text-primary uppercase block tracking-wider mb-2">// DIRECT COMMS</span>
-                    <h2 class="font-headline text-3xl md:text-4xl font-black text-on-surface mb-6 uppercase">Discuss Procurement</h2>
+                    <span class="font-mono text-[11px] text-primary uppercase block tracking-[0.2em] mb-2">// DIRECT COMMS</span>
+                    <h2 class="font-headline text-3xl md:text-5xl font-black text-on-surface mb-6 uppercase">DISCUSS PROCUREMENT</h2>
                     <p class="text-on-surface-variant text-base mb-8 leading-relaxed">Contact our Raipur sales department directly for contract pricing sheets, retail dispatch details, or technical installation queries.</p>
                     
                     <!-- Direct CTA Action Buttons -->
                     <div class="flex flex-wrap gap-4 mb-8 font-headline text-xs font-bold uppercase tracking-wider">
-                        <a href="https://wa.me/919776577779" target="_blank" class="flex items-center gap-2 bg-[#25D366] text-white px-5 py-3 rounded-full hover:brightness-105 active:scale-95 transition-all shadow-sm">
+                        <a href="https://wa.me/919776577779" target="_blank" class="flex items-center gap-2 bg-[#25D366] text-white px-5 py-3 rounded-[2px] hover:brightness-105 active:scale-95 transition-all shadow-sm">
                             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-2.135 0-4.141.832-5.648 2.339s-2.339 3.513-2.339 5.648c0 1.936.689 3.766 1.939 5.213l-1.272 4.64 4.75-1.246c1.393.759 2.96 1.161 4.57 1.161h.003c2.135 0 4.141-.832 5.648-2.339s2.339-3.513 2.339-5.648c0-2.135-.832-4.141-2.339-5.648s-3.513-2.339-5.648-2.339zm6.758 11.233c-.279.791-1.63 1.451-2.253 1.54-.582.083-1.339.117-2.135-.141-3.037-1.121-5.127-4.17-5.279-4.372-.152-.202-1.232-1.637-1.232-3.123 0-1.486.78-2.213 1.059-2.516.279-.303.608-.379.81-.379s.405.002.582.01c.187.008.441-.071.691.536.253.614.861 2.1.936 2.253s.127.329.025.532c-.101.203-.152.329-.304.506-.152.177-.319.395-.455.531-.152.152-.311.318-.134.622.177.303.786 1.295 1.686 2.095.116.103.218.156.326.196.941.748 1.666.974 2.285.974.62 0 .979-.313 1.282-.62.303-.307 1.316-1.539 1.671-2.069.354-.531.709-.455 1.189-.279.48.177 3.037 1.431 3.568 1.697.531.266.886.392 1.012.61.127.218.127 1.264-.152 2.055z"></path></svg>
                             WhatsApp Channel
                         </a>
-                        <a href="mailto:vaibhav.fande@gmail.com" class="flex items-center gap-2 border border-primary text-primary px-5 py-3 rounded-full hover:bg-primary/10 active:scale-95 transition-all">
+                        <a href="mailto:vaibhav.fande@gmail.com" class="flex items-center gap-2 border border-primary text-primary px-5 py-3 rounded-[2px] hover:bg-primary/10 active:scale-95 transition-all">
                             <span class="material-symbols-outlined text-sm">mail</span>
                             Email Dispatch
                         </a>
@@ -688,8 +706,8 @@
 
                     <!-- Details Table -->
                     <div class="industrial-card p-5 bg-surface">
-                        <div class="font-headline text-[11px] font-bold text-on-surface-variant mb-3 uppercase tracking-wider opacity-60">REGIONAL COMMUNICATIONS SUMMARY</div>
-                        <table class="w-full text-left text-xs border-collapse">
+                        <div class="font-mono text-[10px] text-on-surface-variant mb-3 uppercase tracking-tighter opacity-50">[ REGIONAL COMMUNICATIONS TELEMETRY ]</div>
+                        <table class="w-full text-left font-mono text-xs border-collapse">
                             <tbody class="divide-y divide-border-neutral/30 text-on-surface">
                                 <tr>
                                     <td class="py-2.5 font-bold text-primary uppercase">TELEPHONE</td>
@@ -713,22 +731,22 @@
                 </div>
                 
                 <!-- Inquiry Form -->
-                <div class="p-6 border border-border-neutral bg-surface shadow-sm rounded-xl">
+                <div class="p-6 border border-border-neutral bg-surface shadow-sm rounded-[2px]">
                     <h3 class="font-headline text-lg font-bold text-on-surface mb-4 uppercase tracking-wider">Quick Inquiry</h3>
-                    <form id="generalInquiryForm" class="space-y-4 text-xs">
+                    <form id="generalInquiryForm" class="space-y-4 font-mono text-xs">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label class="text-[10px] text-on-surface-variant block mb-1 uppercase font-semibold">Full Name</label>
-                                <input required id="inquiryName" class="w-full input-etched px-3 py-2 text-xs transition-all" type="text" placeholder="Your name"/>
+                                <label class="text-[10px] text-on-surface-variant block mb-1 uppercase">Full Name</label>
+                                <input required id="inquiryName" class="w-full input-etched px-3 py-2 text-xs rounded-[2px] transition-all" type="text" placeholder="Your name"/>
                             </div>
                             <div>
-                                <label class="text-[10px] text-on-surface-variant block mb-1 uppercase font-semibold">Phone No.</label>
-                                <input required id="inquiryPhone" class="w-full input-etched px-3 py-2 text-xs transition-all" type="tel" placeholder="Your mobile no."/>
+                                <label class="text-[10px] text-on-surface-variant block mb-1 uppercase">Phone No.</label>
+                                <input required id="inquiryPhone" class="w-full input-etched px-3 py-2 text-xs rounded-[2px] transition-all" type="tel" placeholder="Your mobile no."/>
                             </div>
                         </div>
                         <div>
-                            <label class="text-[10px] text-on-surface-variant block mb-1 uppercase font-semibold">Service Request Type</label>
-                            <select id="inquiryService" class="w-full input-etched px-3 py-2 text-xs transition-all">
+                            <label class="text-[10px] text-on-surface-variant block mb-1 uppercase">Service Request Type</label>
+                            <select id="inquiryService" class="w-full input-etched px-3 py-2 text-xs rounded-[2px] transition-all">
                                 <option>Product Inquiry</option>
                                 <option>Government Tender / PSU Supply</option>
                                 <option>Installation Service</option>
@@ -736,10 +754,10 @@
                             </select>
                         </div>
                         <div>
-                            <label class="text-[10px] text-on-surface-variant block mb-1 uppercase font-semibold">Message / Specifications</label>
-                            <textarea required id="inquiryMessage" class="w-full input-etched px-3 py-2 text-xs transition-all" rows="3" placeholder="List requested quantities, models, specifications..."></textarea>
+                            <label class="text-[10px] text-on-surface-variant block mb-1 uppercase">Message / Specifications</label>
+                            <textarea required id="inquiryMessage" class="w-full input-etched px-3 py-2 text-xs rounded-[2px] transition-all" rows="3" placeholder="List requested quantities, models, specifications..."></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-primary hover:bg-[#1d4ed8] text-white font-headline font-bold uppercase tracking-wider py-3 rounded-full hover:brightness-110 active:scale-95 transition-all">
+                        <button type="submit" class="w-full bg-primary hover:bg-[#1d4ed8] text-white font-headline font-bold uppercase tracking-wider py-3 rounded-[2px] hover:brightness-110 active:scale-95 transition-all">
                             Submit Inquiry
                         </button>
                     </form>
@@ -759,13 +777,13 @@
                 <p class="text-xs text-on-surface-variant opacity-70 leading-relaxed mb-3">
                     Engineering durable power. Supplying central quality. Manufactured in Raipur, CG, India.
                 </p>
-                <div class="text-[9px] text-on-surface-variant opacity-60 uppercase font-semibold tracking-wider">
+                <div class="font-mono text-[9px] text-on-surface-variant opacity-50 uppercase">
                     ESTD 2026 // PUBLIC &amp; PRIVATE SUPPLIES
                 </div>
             </div>
             <div>
-                <h4 class="text-[10px] text-primary mb-4 font-bold uppercase font-headline tracking-wider">[ INDEX PORTALS ]</h4>
-                <ul class="space-y-2 text-[11px] uppercase font-semibold">
+                <h4 class="font-mono text-[10px] text-primary mb-4 font-bold uppercase">[ INDEX PORTALS ]</h4>
+                <ul class="space-y-2 font-mono text-[11px] uppercase">
                     <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#about">Corporate About</a></li>
                     <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#catalog">Product Catalog</a></li>
                     <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#contracts">Government Supply</a></li>
@@ -773,16 +791,16 @@
                 </ul>
             </div>
             <div>
-                <h4 class="text-[10px] text-primary mb-4 font-bold uppercase font-headline tracking-wider">[ SUPPORT TERMINAL ]</h4>
-                <ul class="space-y-2 text-[11px] uppercase font-semibold">
+                <h4 class="font-mono text-[10px] text-primary mb-4 font-bold uppercase">[ SUPPORT TERMINAL ]</h4>
+                <ul class="space-y-2 font-mono text-[11px] uppercase">
                     <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="mailto:vaibhav.fande@gmail.com">Email Helpdesk</a></li>
                     <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="https://wa.me/919776577779">WhatsApp Direct</a></li>
                     <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#contact">Contact Form</a></li>
                 </ul>
             </div>
             <div class="md:text-right">
-                <div class="text-[9px] text-on-surface-variant mb-3 uppercase font-semibold tracking-wider">ISO 9001:2015 CERTIFIED MANUFACTURING UNIT</div>
-                <div class="text-[10px] text-on-surface-variant uppercase font-semibold">
+                <div class="font-mono text-[9px] text-on-surface-variant mb-3 uppercase">ISO 9001:2015 CERTIFIED MANUFACTURING UNIT</div>
+                <div class="font-mono text-[10px] text-on-surface-variant uppercase">
                     © <span id="year"></span> AEROVIX. ALL RIGHTS RESERVED.
                 </div>
             </div>
@@ -920,14 +938,14 @@
                                 ${prod.specs}
                             </td>
                             <td class="py-3.5 px-4 text-center border-b border-border-neutral/30">
-                                <div class="inline-flex items-center bg-surface border border-border-neutral rounded-full overflow-hidden">
+                                <div class="inline-flex items-center bg-surface border border-border-neutral rounded-[2px] overflow-hidden">
                                     <button onclick="changeQtyInCatalog('${prod.id}', -1)" class="w-8 h-8 flex items-center justify-center text-on-surface hover:text-primary active:bg-surface-container-high transition-colors font-bold text-sm">-</button>
                                     <input id="qty-${prod.id}" type="number" readonly value="${initialQty}" class="w-10 bg-transparent border-none text-center font-mono text-xs p-0 text-on-surface outline-none focus:ring-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"/>
                                     <button onclick="changeQtyInCatalog('${prod.id}', 1)" class="w-8 h-8 flex items-center justify-center text-on-surface hover:text-primary active:bg-surface-container-high transition-colors font-bold text-sm">+</button>
                                 </div>
                             </td>
                             <td class="py-3.5 px-4 text-right border-b border-border-neutral/30">
-                                <button onclick="addProductToCart('${prod.id}', '${prod.name.replace(/'/g, "\\'")}', '${prod.specs.replace(/'/g, "\\'")}')" class="bg-primary hover:bg-[#1d4ed8] text-white font-headline font-bold uppercase tracking-wider text-[11px] px-5 py-2.5 transition-all active:scale-95 flex items-center gap-1.5 ml-auto rounded-full shadow-sm">
+                                <button onclick="addProductToCart('${prod.id}', '${prod.name.replace(/'/g, "\\'")}', '${prod.specs.replace(/'/g, "\\'")}')" class="bg-primary hover:bg-[#1d4ed8] text-white font-headline font-bold uppercase tracking-wider text-[11px] px-4 py-2 transition-all active:scale-95 flex items-center gap-1 ml-auto rounded-[2px]">
                                     <span class="material-symbols-outlined text-xs">add_shopping_cart</span> Add
                                 </button>
                             </td>
@@ -1091,13 +1109,13 @@
                                     <div class="font-headline font-bold text-on-surface text-sm leading-tight">${item.name}</div>
                                     <div class="font-mono text-[10px] text-secondary mt-1">${item.specs}</div>
                                 </div>
-                                <button onclick="removeFromCart('${item.id}')" class="text-on-surface-variant hover:text-red-600 p-1.5 active:scale-95 transition-colors border border-border-neutral rounded-full bg-surface" aria-label="Remove item">
+                                <button onclick="removeFromCart('${item.id}')" class="text-on-surface-variant hover:text-red-600 p-1 active:scale-95 transition-colors border border-border-neutral rounded-[2px] bg-surface" aria-label="Remove item">
                                     <span class="material-symbols-outlined text-sm">delete</span>
                                 </button>
                             </div>
                             <div class="flex justify-between items-center mt-2 font-mono text-[10px]">
-                                <span class="text-on-surface-variant uppercase font-semibold">Quantity</span>
-                                <div class="inline-flex items-center bg-surface-container border border-border-neutral rounded-full overflow-hidden">
+                                <span class="text-on-surface-variant uppercase">Quantity</span>
+                                <div class="inline-flex items-center bg-surface-container border border-border-neutral rounded-[2px] overflow-hidden">
                                     <button onclick="changeQtyInCart('${item.id}', -1)" class="w-7 h-7 flex items-center justify-center text-on-surface hover:text-primary active:bg-surface-container-high transition-colors font-bold text-xs">-</button>
                                     <span class="w-8 text-center font-mono text-xs text-on-surface">${item.qty}</span>
                                     <button onclick="changeQtyInCart('${item.id}', 1)" class="w-7 h-7 flex items-center justify-center text-on-surface hover:text-primary active:bg-surface-container-high transition-colors font-bold text-xs">+</button>
